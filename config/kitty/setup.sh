@@ -12,6 +12,5 @@ for file in ./config/kitty/*
 				continue
 			fi
 
-		cp $file ~/.config/kitty/
-
+		ln $file ~/.config/kitty/
 	done
