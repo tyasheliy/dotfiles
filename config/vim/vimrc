@@ -11,20 +11,27 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/dense-analysis/ale'
 Plug 'https://github.com/mattn/emmet-vim'
 Plug 'ghifarit53/tokyonight-vim'
-Plug 'https://github.com/TysonAndre/php-vim-syntax'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+Plug 'sheerun/vim-polyglot'
+Plug 'StanAngeloff/php.vim'
+Plug 'francoiscabrol/ranger.vim'
 
 call plug#end()
 
 "colorscheme settings
 
-"colo gruvbox
-"set background=dark
+set background=dark
+colorscheme gruvbox
+hi Normal guibg=NONE ctermbg=NONE
 
-let g:tokyonight_style = 'night'
-let g:airline_theme = "tokyonight"
-let g:tokyonight_transparent_background = 1
-let g:tokyonight_enable_italic = 1
-colorscheme tokyonight
+"let g:tokyonight_style = 'night'
+"let g:airline_theme = "tokyonight"
+"let g:tokyonight_transparent_background = 1
+"let g:tokyonight_enable_italic = 1
+"colorscheme tokyonight
+
+"let g:airline_theme = 'catppuccin_mocha'
+"colorscheme catppuccin_mocha
 
 "default settings
 set encoding=UTF-8
@@ -45,8 +52,12 @@ let g:ale_linters = {
 \ 'cs': ['OmniSharp']
 \}
 
+"rangervim
+let g:ranger_map_keys = 0
+map <C-o> :RangerWorkingDirectory<CR>
+
 "maps and bindigs
-map <C-o> :NERDTreeToggle<CR>
+"map <C-o> :NERDTreeToggle<CR>
 "inoremap {<CR> <CR>{}<LEFT><CR><UP><RIGHT><CR>
 "inoremap () ()<LEFT>
 inoremap kj <ESC>
