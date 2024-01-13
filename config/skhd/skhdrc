@@ -1,0 +1,32 @@
+# open tools
+cmd - return : open -n /Applications/Alacritty.app
+cmd + shift - return : open https://google.com
+
+# windows
+cmd - h : yabai -m window --focus west
+cmd - j : yabai -m window --focus south
+cmd - k : yabai -m window --focus north
+cmd - l : yabai -m window --focus east
+
+# swap
+shift + cmd - h : yabai -m window --warp west
+shift + cmd - j : yabai -m window --warp south
+shift + cmd - k : yabai -m window --warp north
+shift + cmd - l : yabai -m window --warp east
+
+# extensions 
+ctrl - x : yabai -m space --balance
+shift + cmd - space : yabai -m window --toggle float
+cmd - f         : yabai -m window --toggle zoom-fullscreen
+
+# spaces
+ctrl - x : yabai -m space --create
+cmd + fn - x : yabai -m space --destroy
+
+ctrl - h : yabai -m space --focus prev
+ctrl - l : yabai -m space --focus next
+
+ctrl - 1 : yabai -m space --focus 1
+ctrl - 2 : yabai -m space --focus 2
+ctrl - 3 : yabai -m space --focus 3
+ctrl - 4 : yabai -m space --focus 4

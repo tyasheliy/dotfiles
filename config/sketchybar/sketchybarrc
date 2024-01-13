@@ -1,0 +1,107 @@
+PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
+
+##### Bar Appearance #####
+# Configuring the general appearance of the bar, these are only some of the
+# options available. For all options see:
+# https://felixkratz.github.io/SketchyBar/config/bar
+# If you are looking for other colors, see the color picker:
+# https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
+
+sketchybar --bar height=40 \
+				 position=top \
+				 color=0x00f17013 \
+				 topmost=true \
+				 y_offset=3.5 \
+				 padding_left=14 \
+				 padding_right=14
+
+##### Changing Defaults #####
+# We now change some default values that are applied to all further items
+# For a full list of all available item properties see:
+# https://felixkratz.github.io/SketchyBar/config/items
+
+sketchybar --default label.font="JetBrainsMono Nerd Font:Bold:16.0" \
+                     label.color=0xffffd7ae                \
+                     icon.font="SF Pro:Bold:14.0"         \
+                     icon.color=0xffffd7ae                 \
+					 icon.padding_left=6 \
+					 icon.padding_right=4 \
+					 label.padding_left=4 \
+					 label.padding_right=9
+
+##### Adding Right Items #####
+# In the same way as the left items we can add items to the right side.
+# Additional position (e.g. center) are available, see:
+# https://felixkratz.github.io/SketchyBar/config/items#adding-items-to-sketchybar
+
+# Some items refresh on a fixed cycle, e.g. the clock runs its script once
+# every 10s. Other items respond to events they subscribe to, e.g. the
+# volume.sh script is only executed once an actual change in system audio
+# volume is registered. More info about the event system can be found here:
+# https://felixkratz.github.io/SketchyBar/config/events
+sketchybar --add item time right
+sketchybar --add item time_separator right
+sketchybar --add item battery right
+sketchybar --add item batter_separator right
+sketchybar --add item volume right
+sketchybar --add item volume_separator right
+
+sketchybar --add item cpu left
+sketchybar --add item cpu_separator left
+sketchybar --add item net left
+sketchybar --add item ip popup.net
+
+sketchybar --add item spaces center
+
+sketchybar --set /.*/  \
+					  background.color=0xcc262626 \
+					  background.border_color=0xffffd7ae \
+					  background.border_width=0 \
+					  background.corner_radius=8 \
+					  background.padding_left=1 \
+					  background.padding_right=1 \
+					  blur_radius=10 \
+
+sketchybar --set /.*_separator/ background.color=0x00000000 \
+								background.border_width=0 \
+								width=2
+
+sketchybar --set time icon=􀐬\
+					  script="$PLUGIN_DIR/clock.sh" \
+					  updates=on \
+					  update_freq=50
+
+sketchybar --set battery script="$PLUGIN_DIR/battery.sh" \
+						 update_freq=120 
+
+sketchybar --subscribe battery system_woke power_source_change
+
+sketchybar --set volume script="$PLUGIN_DIR/volume.sh" 
+
+sketchybar --subscribe volume volume_change
+
+sketchybar --set cpu script="$PLUGIN_DIR/cpu.sh" \
+					 icon=􀧓\
+					 update_freq=10
+
+sketchybar --set spaces script="$PLUGIN_DIR/spaces.sh" \
+						width=300
+sketchybar --subscribe spaces space_change
+
+sketchybar --set net script="$PLUGIN_DIR/net.sh" \
+					 icon.padding_left=6 \
+					 icon.padding_right=8 \
+					 label.drawing=false \
+					 click_script="sketchybar -m --set \$NAME popup.drawing=toggle" \
+sketchybar --subscribe net wifi_change
+
+sketchybar --set ip icon=􀎟 \
+					script="$PLUGIN_DIR/ip.sh"
+sketchybar --subscribe ip wifi_change
+					 
+
+##### Finalizing Setup #####
+# The below command is only needed at the end of the initial configuration to
+# force all scripts to run the first time, it should never be run in an item script.
+
+sketchybar --update
