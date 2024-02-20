@@ -47,7 +47,10 @@ colorscheme industry
 set encoding=UTF-8
 set number
 set nowrap
-set tabstop=4
+set magic
+set expandtab
+set tabstop=8
+set shiftwidth=4
 
 "vim-airline
 
