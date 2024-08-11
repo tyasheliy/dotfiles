@@ -46,6 +46,9 @@ alt + Escape
 alt + shift + {q,r}
 	bspc {quit,wm -r}
 
+alt + shift + h
+    xdotool key Caps_Lock
+
 # close and kill
 alt + {_,shift + }w
 	bspc node -{c,k}
